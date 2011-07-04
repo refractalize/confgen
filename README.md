@@ -9,22 +9,20 @@ The master config will be named web.master.config, and will (for the most part) 
 web.master.config:
 
 	<configuration
-		xmlns:conf="http://schemas.bbc.com/development/confgen"
+		xmlns:conf="http://schemas.refractalize.org/confgen"
 		conf:environments="dev,systest,uat,live">
 		...
 		<appSettings>
-			<add key="PendingLoanLifeTimeInDays" value="5"
+			<add key="Timeout" value="5"
 				 conf:for="live,uat"/>
-			<add key="PendingLoanLifeTimeInDays" value="1"
+			<add key="Timeout" value="1"
 				 conf:for="systest,dev"/>
-			<add key="SmtpHost" value="smtp.worldwide.bbc.co.uk"/>
-			<add key="LibraryEmailAddress" value="danijel.rahija@bbc.com"
-				 conf:for="systest"/>
-			<add key="LibraryEmailAddress" value="kash.farooq@bbc.com"
-				 conf:for="dev"/>
-			<add key="LibraryEmailAddress" value="wwmediaoperations@bbc.com"
+			<add key="SmtpHost" value="smtp.example.com"/>
+			<add key="SupportEmailAddress" value="test@example.com"
+				 conf:for="systest,dev"/>
+			<add key="SupportEmailAddress" value="support@example.com"
 				 conf:for="uat,live"/>
-			<add key="LibraryEmailSubject" value="Pending Loan Report"/>
+			<add key="LibraryEmailSubject" value="Problem"/>
 		</appSettings>
 		...
 	</configuration>
@@ -36,9 +34,9 @@ web.config (this is dev, a special case):
 	<configuration>
 		...
 		<appSettings>
-			<add key="PendingLoanLifeTimeInDays" value="1"/>
-			<add key="SmtpHost" value="smtp.worldwide.bbc.co.uk"/>
-			<add key="LibraryEmailAddress" value="kash.farooq@bbc.com"/>
+			<add key="Timeout" value="1"/>
+			<add key="SmtpHost" value="smtp.example.com"/>
+			<add key="SupportEmailAddress" value="test@example.com"/>
 			<add key="LibraryEmailSubject" value="Pending Loan Report"/>
 		</appSettings>
 		...
@@ -49,9 +47,9 @@ web.config.systest:
 	<configuration>
 		...
 		<appSettings>
-			<add key="PendingLoanLifeTimeInDays" value="1"/>
-			<add key="SmtpHost" value="smtp.worldwide.bbc.co.uk"/>
-			<add key="LibraryEmailAddress" value="danijel.rahija@bbc.com"/>
+			<add key="Timeout" value="1"/>
+			<add key="SmtpHost" value="smtp.example.com"/>
+			<add key="SupportEmailAddress" value="test@example.com"/>
 			<add key="LibraryEmailSubject" value="Pending Loan Report"/>
 		</appSettings>
 		...
@@ -62,9 +60,9 @@ web.config.uat:
 	<configuration>
 		...
 		<appSettings>
-			<add key="PendingLoanLifeTimeInDays" value="5"/>
-			<add key="SmtpHost" value="smtp.worldwide.bbc.co.uk"/>
-			<add key="LibraryEmailAddress" value="wwmediaoperations@bbc.com"/>
+			<add key="Timeout" value="5"/>
+			<add key="SmtpHost" value="smtp.example.com"/>
+			<add key="SupportEmailAddress" value="support@example.com"/>
 			<add key="LibraryEmailSubject" value="Pending Loan Report"/>
 		</appSettings>
 		...
@@ -75,9 +73,9 @@ web.config.live:
 	<configuration>
 		...
 		<appSettings>
-			<add key="PendingLoanLifeTimeInDays" value="5"/>
-			<add key="SmtpHost" value="smtp.worldwide.bbc.co.uk"/>
-			<add key="LibraryEmailAddress" value="wwmediaoperations@bbc.com"/>
+			<add key="Timeout" value="5"/>
+			<add key="SmtpHost" value="smtp."/>
+			<add key="SupportEmailAddress" value="support@example.com"/>
 			<add key="LibraryEmailSubject" value="Pending Loan Report"/>
 		</appSettings>
 		...
@@ -98,11 +96,11 @@ To set a variable for a specific environment:
 
 To use a variable, enclose the variable name in braces:
 
-	<endpoint address="net.msmq://{host}/digitalhub.sps.mediaordering.digitalfilequeue" conf:with-vars="true"/>
+	<endpoint address="net.msmq://{host}/myqueue" conf:with-vars="true"/>
 
 Also works for text inside elements:
 
-	<address conf:with-vars="true">net.msmq://{host}/digitalhub.sps.mediaordering.digitalfilequeue</address>
+	<address conf:with-vars="true">net.msmq://{host}/myqueue</address>
 
 The conf:with-vars attribute controls whether to do variable substitution at all. The default is NOT to do substitution so existing braces won't break, making congen 2 fully backwards compatible with congen 1.
 
@@ -118,21 +116,21 @@ The conf:with-vars attribute is inherited by sub-elements. Variables are inherit
 So in the end, configurations like the one following should be much easier to read and write:
 
 	<?xml version="1.0" encoding="utf-8" ?>
-	<configuration xmlns:conf="http://schemas.bbc.com/development/confgen" conf:environments="dev,systest1,systest2,uat,live1,live2">
+	<configuration xmlns:conf="http://schemas.refractalize.org/confgen" conf:environments="dev,systest1,systest2,uat,live1,live2">
 	       <system.serviceModel>
 	              <conf:var name="host" conf:for="dev">localhost</conf:var>
-	              <conf:var name="host" conf:for="systest1">v-w-dcs-iis01</conf:var>
-	              <conf:var name="host" conf:for="systest2">v-w-dcs-test5</conf:var>
-	              <conf:var name="host" conf:for="uat">wwlis1029</conf:var>
-	              <conf:var name="host" conf:for="live1">wwlapfs1061</conf:var>
-	              <conf:var name="host" conf:for="live2">wwlapfs1062</conf:var>
+	              <conf:var name="host" conf:for="systest1">systest1</conf:var>
+	              <conf:var name="host" conf:for="systest2">systest2</conf:var>
+	              <conf:var name="host" conf:for="uat">uatmachine</conf:var>
+	              <conf:var name="host" conf:for="live1">livemachine2</conf:var>
+	              <conf:var name="host" conf:for="live2">livemachine1</conf:var>
 
 	              <client>
 	                     <endpoint
-	                           address="net.msmq://{host}/digitalhub.sps.mediaordering.digitalfilequeue"
+	                           address="net.msmq://{host}/myqueue"
 	                           binding="netMsmqBinding"
 	                           bindingConfiguration="msmqBinding"
-	                           contract="Bbc.WW.Dcs.Library.Sps.Core.Services.IDigitalFileService"
+	                           contract="Stuff.IMyQueue"
 	                           name="digitalFile" conf:with-vars="true"/>
 	              </client>
 	       </system.serviceModel>
