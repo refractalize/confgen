@@ -8,7 +8,7 @@ namespace confgen
     public class ConfigurationGenerator
     {
         private readonly XElement _configurationXml;
-        public static XNamespace Namespace = XNamespace.Get("http://schemas.bbc.com/development/confgen");
+        public static XNamespace Namespace = XNamespace.Get("http://schemas.refractalize.org/confgen");
         public static XName ForEnvironmentsAttribute = Namespace + "for";
         public static XName VarAttribute = Namespace + "var";
         public static XName WithVarsAttribute = Namespace + "with-vars";

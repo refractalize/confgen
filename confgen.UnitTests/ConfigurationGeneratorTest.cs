@@ -96,7 +96,7 @@ namespace confgen.UnitTests
         public void ShouldReplaceVariablesIfReplaceIsTrue()
         {
             AssertOutputForInput(
-                @"<stuff xmlns:conf=""http://schemas.bbc.com/development/confgen"" conf:environments=""dev"">
+                @"<stuff xmlns:conf=""http://schemas.refractalize.org/confgen"" conf:environments=""dev"">
 	                <conf:var name=""host"">example.com</conf:var>
 	                <morestuff1 conf:with-vars=""true"">http://{host}/blah/blah</morestuff1>
 	                <morestuff2 conf:with-vars=""false"">http://{host}/blah/blah</morestuff2>
@@ -133,7 +133,7 @@ namespace confgen.UnitTests
         public void VariablesShouldAllowVariablesToo()
         {
             AssertOutputForInput(
-                @"<stuff xmlns:conf=""http://schemas.bbc.com/development/confgen"" conf:environments=""dev"">
+                @"<stuff xmlns:conf=""http://schemas.refractalize.org/confgen"" conf:environments=""dev"">
 	                <conf:var name=""env"">test{notvar}</conf:var>
 	                <conf:var name=""host"" conf:with-vars=""true"">{env}.example.com</conf:var>
 	                <stuff conf:with-vars=""true"">http://{host}/blah/blah</stuff>
@@ -162,7 +162,7 @@ namespace confgen.UnitTests
         [Test]
         public void VariablesShouldBeSetOnlyForEnvironment() {
             var xml =
-@"<stuff xmlns:conf=""http://schemas.bbc.com/development/confgen"" conf:with-vars=""true"" conf:environments=""dev,live"">
+@"<stuff xmlns:conf=""http://schemas.refractalize.org/confgen"" conf:with-vars=""true"" conf:environments=""dev,live"">
 	<conf:var name=""host"" conf:for=""dev"">localhost</conf:var>
 	<conf:var name=""host"" conf:for=""live"">example.com</conf:var>
 	<host value=""{host}""/>
