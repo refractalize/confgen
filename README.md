@@ -90,19 +90,19 @@ To install, just copy the exe (download latest here) into the folder where your 
 
 To set a variable:
 
-<conf:var name="name">value</conf:var>
+	<conf:var name="name">value</conf:var>
 
 To set a variable for a specific environment:
 
-<conf:var name="name" conf:for="dev">value</conf:var>
+	<conf:var name="name" conf:for="dev">value</conf:var>
 
 To use a variable, enclose the variable name in braces:
 
-<endpoint address="net.msmq://{host}/digitalhub.sps.mediaordering.digitalfilequeue" conf:with-vars="true"/>
+	<endpoint address="net.msmq://{host}/digitalhub.sps.mediaordering.digitalfilequeue" conf:with-vars="true"/>
 
 Also works for text inside elements:
 
-<address conf:with-vars="true">net.msmq://{host}/digitalhub.sps.mediaordering.digitalfilequeue</address>
+	<address conf:with-vars="true">net.msmq://{host}/digitalhub.sps.mediaordering.digitalfilequeue</address>
 
 The conf:with-vars attribute controls whether to do variable substitution at all. The default is NOT to do substitution so existing braces won't break, making congen 2 fully backwards compatible with congen 1.
 
