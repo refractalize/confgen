@@ -42,7 +42,7 @@ web.config (this is dev, a special case):
 		...
 	</configuration>
 
-web.config.systest:
+web.systest.config:
 
 	<configuration>
 		...
@@ -55,7 +55,7 @@ web.config.systest:
 		...
 	</configuration>
 
-web.config.uat:
+web.uat.config:
 
 	<configuration>
 		...
@@ -68,7 +68,7 @@ web.config.uat:
 		...
 	</configuration>
 
-web.config.live:
+web.live.config:
 
 	<configuration>
 		...

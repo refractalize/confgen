@@ -33,8 +33,8 @@ namespace confgen.UnitTests
             XDocument devDoc = null, systest1Doc = null, systest2Doc = null;
 
             diskAccessMock.Setup(ls => ls.Save(It.IsAny<XDocument>(), "app.config")).Callback<XDocument, string>((doc, fn) => devDoc = doc);
-            diskAccessMock.Setup(ls => ls.Save(It.IsAny<XDocument>(), "app.config.systest1")).Callback<XDocument, string>((doc, fn) => systest1Doc = doc);
-            diskAccessMock.Setup(ls => ls.Save(It.IsAny<XDocument>(), "app.config.systest2")).Callback<XDocument, string>((doc, fn) => systest2Doc = doc);
+            diskAccessMock.Setup(ls => ls.Save(It.IsAny<XDocument>(), "app.systest1.config")).Callback<XDocument, string>((doc, fn) => systest1Doc = doc);
+            diskAccessMock.Setup(ls => ls.Save(It.IsAny<XDocument>(), "app.systest2.config")).Callback<XDocument, string>((doc, fn) => systest2Doc = doc);
 
             var console = new Console();
             console.BuildConfigFilesFromMaster(masterFileName, diskAccessMock.Object);

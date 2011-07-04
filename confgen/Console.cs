@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.IO;
 using System.Xml.Linq;
 
 namespace confgen {
@@ -65,8 +66,12 @@ namespace confgen {
         private static string GetEnvironmentOutputFilename(string baseConfigFilename, string environment) {
             if (environment == DefaultEnvironment) {
                 return baseConfigFilename;
-            } else {
-                return baseConfigFilename + "." + environment;
+            } else
+            {
+                return Path.Combine(Path.GetDirectoryName(baseConfigFilename),
+                                    Path.GetFileNameWithoutExtension(baseConfigFilename) +
+                                    "." + environment +
+                                    Path.GetExtension(baseConfigFilename));
             }
         }
     }
