@@ -22,7 +22,7 @@ web.master.config:
 				 conf:for="systest,dev"/>
 			<add key="SupportEmailAddress" value="support@example.com"
 				 conf:for="uat,live"/>
-			<add key="LibraryEmailSubject" value="Problem"/>
+			<add key="EmailSubject" value="Problem"/>
 		</appSettings>
 		...
 	</configuration>
@@ -37,7 +37,7 @@ web.config (this is dev, a special case):
 			<add key="Timeout" value="1"/>
 			<add key="SmtpHost" value="smtp.example.com"/>
 			<add key="SupportEmailAddress" value="test@example.com"/>
-			<add key="LibraryEmailSubject" value="Pending Loan Report"/>
+			<add key="EmailSubject" value="Problem"/>
 		</appSettings>
 		...
 	</configuration>
@@ -50,7 +50,7 @@ web.systest.config:
 			<add key="Timeout" value="1"/>
 			<add key="SmtpHost" value="smtp.example.com"/>
 			<add key="SupportEmailAddress" value="test@example.com"/>
-			<add key="LibraryEmailSubject" value="Pending Loan Report"/>
+			<add key="EmailSubject" value="Problem"/>
 		</appSettings>
 		...
 	</configuration>
@@ -63,7 +63,7 @@ web.uat.config:
 			<add key="Timeout" value="5"/>
 			<add key="SmtpHost" value="smtp.example.com"/>
 			<add key="SupportEmailAddress" value="support@example.com"/>
-			<add key="LibraryEmailSubject" value="Pending Loan Report"/>
+			<add key="EmailSubject" value="Problem"/>
 		</appSettings>
 		...
 	</configuration>
@@ -74,15 +74,15 @@ web.live.config:
 		...
 		<appSettings>
 			<add key="Timeout" value="5"/>
-			<add key="SmtpHost" value="smtp."/>
+			<add key="SmtpHost" value="smtp.example.com"/>
 			<add key="SupportEmailAddress" value="support@example.com"/>
-			<add key="LibraryEmailSubject" value="Pending Loan Report"/>
+			<add key="EmailSubject" value="Problem"/>
 		</appSettings>
 		...
 	</configuration>
 
 You apply the "for" attribute to elements, so you could apply it to whole sections of your web.config, replacing an entire log4net section for example.
-To install, just copy the exe (download latest here) into the folder where your web.configs are usually kept. When you change your web.master.config, run confgen (you can just double click it in explorer) and it will generate all your web.configs. Errors are printed to the console so if you're having trouble, launch it from cmd.
+To install, just copy the exe into the folder where your web.configs are usually kept. When you change your web.master.config, run confgen (you can just double click it in explorer) and it will generate all your web.configs. Errors are printed to the console so if you're having trouble, launch it from cmd.
 
 ## Variables
 
