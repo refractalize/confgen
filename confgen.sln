@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "confgen", "confgen\confgen.csproj", "{1BE9D39E-DB5E-410F-B2C3-62B3E1A5D3A3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "confgen.UnitTests", "confgen.UnitTests\confgen.UnitTests.csproj", "{95F9D710-2670-4B1C-BB45-130790EE1AF0}"
