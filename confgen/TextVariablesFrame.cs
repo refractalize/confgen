@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 
-namespace confgen {
-    public class TextVariablesFrame : ITextVariables {
+namespace Confgen {
+    internal class TextVariablesFrame : ITextVariables {
         private readonly ITextVariables outerFrame;
         private Dictionary<string, string> variables;
 
@@ -34,11 +34,6 @@ namespace confgen {
             set {
                 variables[name] = value;
             }
-        }
-    }
-
-    public class NoSuchVariableException : ConfgenException {
-        public NoSuchVariableException(string message) : base(message) {
         }
     }
 }

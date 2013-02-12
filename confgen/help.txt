@@ -1,4 +1,4 @@
-# confgen - a tool for streamlining your web.configs
+# Confgen - a tool for streamlining your web.configs
 
 ASP.net web sites usually have a web.config, if you stage deployments for the various environments, for development, system testing, user acceptance testing and then finally a live release, you'll probably have lots of web.configs, one for each staging environment. This tool ensures that you'll only ever keep one web.config, a master version, and generate the other web.configs from it.
 

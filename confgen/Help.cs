@@ -2,8 +2,8 @@ using System;
 using System.IO;
 using System.Linq;
 
-namespace confgen {
-    public class Help {
+namespace Confgen {
+    internal class Help {
         private readonly TextWriter output;
 
         public Help(TextWriter output) {

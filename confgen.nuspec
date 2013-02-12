@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Confgen</id>
+    <version>2.3</version>
+    <authors>Tim Macfarlane</authors>
+    <owners>Tim Macfarlane</owners>
+    <projectUrl>http://github.com/refractalize/confgen</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Nicely factored web.configs</description>
+    <releaseNotes>First release into NuGet</releaseNotes>
+    <copyright>Copyright 2012</copyright>
+  </metadata>
+  <files>
+	<file src="confgen\bin\Debug\confgen.exe" target="lib\net40" />
+	<file src="confgen\bin\Debug\confgen.exe" target="tools\net40" />
+  </files>
+</package>

@@ -1,6 +1,6 @@
 using System.Xml.Linq;
 
-namespace confgen {
+namespace Confgen {
     class XmlLoaderSaver : IXmlLoaderSaver {
         public XDocument Load(string filename) {
             return XDocument.Load(filename);

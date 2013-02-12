@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Moq;
 using NUnit.Framework;
 
-namespace confgen.UnitTests {
+namespace Confgen.UnitTests {
     [TestFixture]
     public class TextReplacerTest {
         [Test]

@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace confgen
+namespace Confgen
 {
-    public class ConfgenException : Exception {
+    internal class ConfgenException : Exception {
         public ConfgenException(string message) : base (message) {}
     }
 }

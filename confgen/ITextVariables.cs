@@ -1,5 +1,5 @@
-namespace confgen {
-    public interface ITextVariables {
+namespace Confgen {
+    internal interface ITextVariables {
         string this[string name] { get; }
     }
 }

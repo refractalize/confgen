@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace confgen {
-    public class TextReplacer {
+namespace Confgen {
+    internal class TextReplacer {
         public string ReplaceVariables(string text, ITextVariables variables) {
             var output = new StringWriter();
             new ParserReplacer(text.ToCharArray(), variables, output).ParseText(0);

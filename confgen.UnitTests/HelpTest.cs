@@ -1,7 +1,7 @@
 using System.IO;
 using NUnit.Framework;
 
-namespace confgen.UnitTests {
+namespace Confgen.UnitTests {
     [TestFixture]
     public class HelpTest {
         [Test]

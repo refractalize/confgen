@@ -4,8 +4,8 @@ using System.Configuration;
 using System.IO;
 using System.Xml.Linq;
 
-namespace confgen {
-    public class Console {
+namespace Confgen {
+    internal class Console {
         public static string MasterConfigExtension = ".master.config";
         public static XName BuildConfigForAttribute = ConfigurationGenerator.Namespace + "environments";
         public const string DefaultEnvironment = "dev";
@@ -39,10 +39,16 @@ namespace confgen {
 
         internal void BuildConfigFilesFromMaster(string masterConfigFilename, string outputConfigFilename, string env, IXmlLoaderSaver xmlLoaderSaver)
         {
-            XDocument configDocument = xmlLoaderSaver.Load(masterConfigFilename);
+            XDocument masterConfig = xmlLoaderSaver.Load(masterConfigFilename);
+            var environmentConfig = GenerateConfig(masterConfig, env);
+            xmlLoaderSaver.Save(environmentConfig, outputConfigFilename);
+        }
+
+        public XDocument GenerateConfig(XDocument configDocument, string env)
+        {
             var confgen = new ConfigurationGenerator(configDocument.Root);
             var environmentConfig = new XDocument(confgen.ConfigForEnvironment(env));
-            xmlLoaderSaver.Save(environmentConfig, outputConfigFilename);
+            return environmentConfig;
         }
 
         internal static List<string> GetEnvironments(XElement element) {

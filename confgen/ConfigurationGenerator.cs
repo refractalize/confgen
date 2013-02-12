@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 
-namespace confgen
+namespace Confgen
 {
-    public class ConfigurationGenerator
+    internal class ConfigurationGenerator
     {
         private readonly XElement _configurationXml;
         public static XNamespace Namespace = XNamespace.Get("http://schemas.refractalize.org/confgen");

@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace confgen.UnitTests {
+namespace Confgen.UnitTests {
     [TestFixture]
     public class TextVariablesFrameTest {
         [Test]

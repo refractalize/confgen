@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace confgen
+namespace Confgen
 {
     class Program
     {

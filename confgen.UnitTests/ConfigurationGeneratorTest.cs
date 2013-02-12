@@ -5,7 +5,7 @@ using System.Text;
 using System.Xml.Linq;
 using NUnit.Framework;
 
-namespace confgen.UnitTests
+namespace Confgen.UnitTests
 {
     [TestFixture]
     public class ConfigurationGeneratorTest

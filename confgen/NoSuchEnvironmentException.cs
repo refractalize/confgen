@@ -1,6 +1,6 @@
-﻿namespace confgen
+﻿namespace Confgen
 {
-    public class NoSuchEnvironmentException : ConfgenException {
+    internal class NoSuchEnvironmentException : ConfgenException {
         public NoSuchEnvironmentException(string message) : base (message) {}
     }
 }
