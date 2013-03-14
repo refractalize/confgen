@@ -27,15 +27,15 @@ namespace Confgen
             get { return GetEnvironments(_configurationXml); }
         }
 
-        public XElement BuildConfigForEnvironment(XElement config, string environment, HashSet<string> allEnvironments) {
-            return BuildConfigForEnvironment(config, environment, allEnvironments, false, new TextVariablesFrame.NoTextVariables());
+        public XElement BuildConfigForEnvironment(XElement config, string environment, IDictionary<string, string> variables, HashSet<string> allEnvironments) {
+            return BuildConfigForEnvironment(config, environment, allEnvironments, false, new TextVariablesFrame(variables));
         }
 
         private XElement BuildConfigForEnvironment(XElement config, string environment, HashSet<string> allEnvironments, bool replace, ITextVariables outerVariables) {
             replace = ReplaceForThisConfig(config, replace);
 
             var output = new XElement(config.Name);
-            var variables = new TextVariablesFrame(outerVariables);
+            var variables = outerVariables.InnerFrame;
 
             CopyAttributes(config, variables, replace, output);
             CopyElements(config, environment, allEnvironments, replace, variables, output);
@@ -52,7 +52,7 @@ namespace Confgen
             return replace;
         }
 
-        private void CopyElements(XElement config, string environment, HashSet<string> allEnvironments, bool replace, TextVariablesFrame variables, XElement output) {
+        private void CopyElements(XElement config, string environment, HashSet<string> allEnvironments, bool replace, ITextVariables variables, XElement output) {
             foreach (XNode node in config.Nodes()) {
                 XNode nodeToAdd = GenerateNode(node, environment, allEnvironments, variables, replace);
 
@@ -62,7 +62,7 @@ namespace Confgen
             }
         }
 
-        private void CopyAttributes(XElement config, TextVariablesFrame variables, bool replace, XElement output) {
+        private void CopyAttributes(XElement config, ITextVariables variables, bool replace, XElement output) {
             foreach (XAttribute attr in config.Attributes()) {
                 if (!IsSpecialAttribute(attr)) {
                     string value = GenerateText(attr.Value, replace, variables);
@@ -80,7 +80,7 @@ namespace Confgen
             }
         }
 
-        private XNode GenerateNode(XNode node, string environment, HashSet<string> allEnvironments, TextVariablesFrame variables, bool replace) {
+        private XNode GenerateNode(XNode node, string environment, HashSet<string> allEnvironments, ITextVariables variables, bool replace) {
             var element = node as XElement;
             if (element != null) {
                 if (IsElementForEnvironment(element, environment, allEnvironments)) {
@@ -108,7 +108,7 @@ namespace Confgen
             return node;
         }
 
-        private void SetVariable(XElement element, bool replace, TextVariablesFrame variables)
+        private void SetVariable(XElement element, bool replace, ITextVariables variables)
         {
             var name = element.Attributes().First(a => a.Name.LocalName == "name");
             if (name != null)
@@ -171,9 +171,9 @@ namespace Confgen
             }
         }
 
-        public XElement ConfigForEnvironment(string environment)
+        public XElement ConfigForEnvironment(string environment, IDictionary<string, string> variables = null)
         {
-            return BuildConfigForEnvironment(_configurationXml, environment, new HashSet<string>(GetEnvironments(_configurationXml)));
+            return BuildConfigForEnvironment(_configurationXml, environment, variables, new HashSet<string>(GetEnvironments(_configurationXml)));
         }
     }
 }

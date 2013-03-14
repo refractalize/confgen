@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Xml.Linq;
 
 namespace Confgen
@@ -9,9 +10,9 @@ namespace Confgen
             new Console().BuildConfigFilesFromMaster(masterFilename, outputFilename, env);
         }
 
-        public static XDocument GenerateConfig(XDocument masterXml, string env)
+        public static XDocument GenerateConfig(XDocument masterXml, string env, IDictionary<string, string> variables = null)
         {
-            return new Console().GenerateConfig(masterXml, env);
+            return new Console().GenerateConfig(masterXml, env, variables);
         }
     }
 }

@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="ConfigurationGeneratorTest.cs" />
     <Compile Include="ConsoleTest.cs" />
+    <Compile Include="Generator.cs" />
     <Compile Include="HelpTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextReplacerTest.cs" />

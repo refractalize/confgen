@@ -44,10 +44,10 @@ namespace Confgen {
             xmlLoaderSaver.Save(environmentConfig, outputConfigFilename);
         }
 
-        public XDocument GenerateConfig(XDocument configDocument, string env)
+        public XDocument GenerateConfig(XDocument configDocument, string env, IDictionary<string, string> variables = null)
         {
             var confgen = new ConfigurationGenerator(configDocument.Root);
-            var environmentConfig = new XDocument(confgen.ConfigForEnvironment(env));
+            var environmentConfig = new XDocument(confgen.ConfigForEnvironment(env, variables));
             return environmentConfig;
         }
 
